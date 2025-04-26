@@ -4,7 +4,7 @@ from django.shortcuts import render
 import json
 
 from .forms import FiltroFolhaForm
-from .models import FolhaPagamento, Departamento, CentroCusto
+from .models import FolhaPagamento
 
 
 def folha_pagamento_view(request):

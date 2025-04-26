@@ -1,45 +1,32 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
 <h2>Folha de Pagamento</h2>
 
-<form method="get">
-    <div class="form-group">
+<form method="get" id="filtroForm">
+
+    <div>
         {{ form.as_p }}
     </div>
+
     <button type="submit">Filtrar</button>
+
 </form>
 
 <div id="folhaChart"></div>
 
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var competencias = {{ competencias|safe }};
-        var totais = {{ totais|safe }};
-        
-        var data = [{
-            x: competencias,
-            y: totais,
-            type: 'bar',
-            marker: {
-                color: 'rgba(75, 192, 192, 0.7)',
-                line: {
-                    color: 'rgba(75, 192, 192, 1)',
-                    width: 1
-                }
-            }
-        }];
-        
-        var layout = {
-            title: 'Total Pago por Competência',
-            xaxis: {title: 'Competência'},
-            yaxis: {title: 'Total Pago (R$)', rangemode: 'tozero'}
-        };
-        
-        Plotly.newPlot('folhaChart', data, layout);
-    });
-</script>
+<script id="competencias" type="application/json">{{ competencias|safe }}</script>
+<script id="totais" type="application/json">{{ totais|safe }}</script>
 
 {% endblock content %}
+
+{% block scripts %}
+
+{{ block.super }}
+
+<script src="{% static 'js/folha_pagamento.js' %}"></script>
+
+{% endblock scripts %}

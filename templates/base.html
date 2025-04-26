@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     {% load static %}
     <meta charset="UTF-8">
     <title>{% block title %}Meu Projeto{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
     {% block content %}
-    {% endblock %}
+    {% endblock content %}
+    {% block scripts %}
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    {% endblock scripts %}
 </body>
+
 </html>
